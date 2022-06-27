@@ -37,14 +37,20 @@ download_release() {
   version="$1"
   filename="$2"
 
-  local platform=$(uname | tr '[:upper:]' '[:lower:]')
+  local platform_test=$(uname | tr '[:upper:]' '[:lower:]')
+
+  if [[ "$platform_test" = darwin ]]; then
+    local platform=mac
+  else
+    local platform=$platform_test
+  fi
 
   local arch_test=$(uname -m)
 
   if [[ "$arch_test" = x86_64 ]]; then
-    arch=amd64
+    local arch=amd64
   else
-    arch=$arch_test
+    local arch=$arch_test
   fi
 
   url="$GH_REPO/releases/download/v${version}/arc_${version}_${platform}_${arch}"
