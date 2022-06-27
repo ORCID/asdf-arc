@@ -24,3 +24,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: arc --version
+          version: 3.5.0
